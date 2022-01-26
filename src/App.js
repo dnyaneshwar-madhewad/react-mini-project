@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      <Page1 />
-      <Page2 />
-    </div>
+    <Router>
+      <Link to="/page1">Page1 | </Link>
+      <Link to="/page2">Page2</Link>
+
+      <Routes>
+        <Route path="/" element={<Page1 />}></Route>
+        <Route path="/page1" element={<Page1 />}></Route>
+        <Route path="/page2" element={<Page2 />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
