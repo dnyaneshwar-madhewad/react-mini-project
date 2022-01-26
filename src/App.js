@@ -1,22 +1,22 @@
+import { useState } from "react";
+
 export default function App() {
   return (
     <div>
       <Hello />
-      <Hello name="rahul" />
-      <Hello id="2" name="Dnyaneshwar" />
     </div>
   );
 }
 
-/*function Hello() {
-  return <h1>Hello!  </h1>;
-}*/
+function Hello() {
+  const [counter] = useState(1);
+  const [counter1] = useState(100.0);
+  const [active] = useState(true);
+  const [user] = useState({ id: 1, name: "Dnyaneshwar" });
 
-/*function Hello(p1) {
-  return <h1>Hello! {p1.name} </h1>;
-}*/
-
-// with descruting
-function Hello({ name, id }) {
-  return <h1>Hello! {name} </h1>;
+  return (
+    <div>
+      <h1>{user.name}</h1>
+    </div>
+  );
 }
