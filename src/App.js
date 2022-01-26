@@ -1,26 +1,19 @@
 export default function App() {
   return (
     <div>
-      <Hello />
-      <Hello />
-      <Hello />
-      <World />
-      <World />
+      <Hello id="1" name="Dnyaneshwar" />
+      <Hello id="2" name="sachin" />
+      <Hello id="2" name="virat" />
     </div>
   );
 }
 
-// JSX :: REACT COMPOANT
 // Hello();
-// Hello();
+// Hello(1);
+// Hello(1, 2);
 // <Hello />
-function Hello() {
-  return <h1>Hello! </h1>;
-}
+function Hello(p1) {
+  console.log(p1);
 
-// World();
-// <World />
-// JSX => X => XML
-function World() {
-  return <h1>World!</h1>;
+  return <h1>Hello! {p1.name} </h1>;
 }
