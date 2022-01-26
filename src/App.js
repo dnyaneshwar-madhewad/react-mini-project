@@ -5,22 +5,43 @@ import {
   Route,
   Routes,
   useNavigate,
+  useParams,
+  useLocation,
 } from "react-router-dom";
 
 export default function App() {
+  let preLoginList = ["/", "/login", "/register"];
+  let location = useLocation();
+
   return (
-    <BrowserRouter>
+    <>
       {/** Link is Secondary */}
-      <Link to="/">Login | </Link>
-      <Link to="/register">Register </Link>
+
+      {preLoginList.includes(location.pathname) && (
+        <div>
+          <Link to="/login">Login | </Link>
+          <Link to="/register">Register |</Link>
+        </div>
+      )}
+
+      {!preLoginList.includes(location.pathname) && (
+        <div>
+          <Link to="/welcome-home">Home | </Link>
+          <Link to="/welcome-home">Expore | </Link>
+          <Link to="/welcome-home">Messages </Link>
+        </div>
+      )}
 
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
         <Route path="/welcome-home" element={<WelcomeHome />} />
+        <Route path="/explore" element={<WelcomeHome />} />
+        <Route path="/messages" element={<WelcomeHome />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
@@ -56,9 +77,16 @@ function Register() {
 }
 
 function WelcomeHome() {
+  let navigate = useNavigate();
+
+  const signOut = () => {
+    navigate("/login");
+  };
+
   return (
     <div>
       <h1>Welcome home</h1>
+      <button onClick={signOut}>Sign Out</button>
     </div>
   );
 }
