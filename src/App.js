@@ -10,25 +10,22 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  let preLoginList = ["/", "/login", "/register"];
+  let preLoginList = ["/", "/login", "/register", "/forget-password"];
   let location = useLocation();
 
   return (
     <>
       {/** Link is Secondary */}
-
-      {preLoginList.includes(location.pathname) && (
+      {preLoginList.includes(location.pathname) ? (
         <div>
           <Link to="/login">Login | </Link>
           <Link to="/register">Register |</Link>
         </div>
-      )}
-
-      {!preLoginList.includes(location.pathname) && (
+      ) : (
         <div>
           <Link to="/welcome-home">Home | </Link>
-          <Link to="/welcome-home">Expore | </Link>
-          <Link to="/welcome-home">Messages </Link>
+          <Link to="/explore">Expore | </Link>
+          <Link to="/messages">Messages </Link>
         </div>
       )}
 
@@ -36,10 +33,11 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
 
         <Route path="/welcome-home" element={<WelcomeHome />} />
-        <Route path="/explore" element={<WelcomeHome />} />
-        <Route path="/messages" element={<WelcomeHome />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/messages" element={<Messages />} />
       </Routes>
     </>
   );
@@ -67,6 +65,7 @@ function Login() {
         <div>
           <input type="button" value="Login to App" onClick={authenticate} />
         </div>
+        <Link to="/forget-password">Forget Password</Link>
       </div>
     </div>
   );
@@ -74,6 +73,14 @@ function Login() {
 
 function Register() {
   return <div>Reigster Page</div>;
+}
+
+function ForgetPassword() {
+  return (
+    <div>
+      <h1>UI For Forget Password</h1>
+    </div>
+  );
 }
 
 function WelcomeHome() {
@@ -89,4 +96,12 @@ function WelcomeHome() {
       <button onClick={signOut}>Sign Out</button>
     </div>
   );
+}
+
+function Explore() {
+  return <h1>Explore Page</h1>;
+}
+
+function Messages() {
+  return <h1>Messages Page</h1>;
 }
